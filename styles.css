@@ -1,0 +1,455 @@
+/* 
+  ==========================
+   BASIC RESET & VARIABLES
+  ==========================
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html, body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+  }
+  
+  /*
+    -- LIGHT THEME (Default) --
+    You can adjust these values to your liking.
+  */
+  :root {
+    --primary-bg: #f0f0f0;     /* Light background */
+    --secondary-bg: #ffffff;   /* Section background */
+    --accent: #5BC0EB;         /* Accent color (bright blue) */
+    --text-color: #333333;     /* Main text color */
+  }
+  
+  /* 
+    -- DARK THEME OVERRIDES --
+    Applied when #theme-toggle is checked 
+  */
+  #theme-toggle:checked ~ .page-content {
+    --primary-bg: #0D1B2A;     /* Dark background */
+    --secondary-bg: #1B263B;   /* Dark secondary background */
+    --accent: #5BC0EB;         /* Same accent for consistency */
+    --text-color: #ffffff;     /* White text */
+  }
+  
+  /* 
+    ==========================
+     GLOBAL STYLES
+    ==========================
+  */
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  a {
+    text-decoration: none;
+    color: var(--accent);
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  section {
+    padding: 60px 5%;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  
+  /* 
+    ==========================
+     NAVBAR
+    ==========================
+  */
+  .navbar {
+    background-color: var(--secondary-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5%;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.4s ease;
+  }
+  .navbar-brand {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent);
+  }
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  .navbar-links a {
+    color: var(--text-color);
+  }
+  .navbar-links a:hover {
+    color: var(--accent);
+  }
+  
+  /* 
+    ==========================
+     THEME SWITCH (TOGGLE)
+    ==========================
+  */
+  .theme-switch {
+    position: relative;
+    width: 50px;
+    height: 24px;
+    cursor: pointer;
+  }
+  .switch-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 24px;
+    background: #ccc;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+  }
+  .switch-handle {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+  }
+  #theme-toggle:checked + nav .theme-switch .switch-track {
+    background: var(--accent);
+  }
+  #theme-toggle:checked + nav .theme-switch .switch-handle {
+    transform: translateX(26px);
+  }
+  
+  /* 
+    ==========================
+     HERO SECTION
+    ==========================
+  */
+  .hero {
+    /* Free stock image from Pexels */
+    background: 
+      linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+      url('https://media.istockphoto.com/id/1452604857/photo/businessman-touching-the-brain-working-of-artificial-intelligence-automation-predictive.jpg?s=612x612&w=0&k=20&c=GkAOxzduJbUKpS2-LX_l6jSKtyhdKlnPMo2ito4xpR4=')
+        center/cover no-repeat;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+  }
+  .hero-content {
+    max-width: 600px;
+  }
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
+  }
+  .hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  .hero-content button {
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  .hero-content button:hover {
+    background-color: #48a6d1;
+  }
+  
+  /* 
+    ==========================
+     ABOUT SECTION
+    ==========================
+  */
+  .about-section {
+    background-color: var(--secondary-bg);
+    text-align: center;
+  }
+  .about-section h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .about-section p {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+  }
+  .about-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .highlight-item {
+    background-color: var(--primary-bg);
+    width: 250px;
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.4s ease;
+  }
+  .highlight-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .highlight-item h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  
+  /* 
+    ==========================
+     VISIONARIES SECTION
+    ==========================
+  */
+  .visionaries-section {
+    background-color: var(--primary-bg);
+    text-align: center;
+  }
+  .visionaries-section h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .visionaries-section p {
+    margin-bottom: 2rem;
+  }
+  .visionaries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    justify-items: center;
+  }
+  .visionary-card {
+    background-color: var(--secondary-bg);
+    width: 100%;
+    max-width: 250px;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .visionary-card:hover {
+    transform: translateY(-5px);
+  }
+  .card-img img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+  .visionary-card h3 {
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+  .visionary-card blockquote {
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-left: 3px solid var(--accent);
+    margin-top: 0.5rem;
+  }
+  
+  /* 
+    ==========================
+     CASE STUDIES SECTION
+    ==========================
+  */
+  .case-studies-section {
+    background-color: var(--secondary-bg);
+    text-align: center;
+  }
+  .case-studies-section h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .case-studies-section p {
+    margin-bottom: 2rem;
+  }
+  .case-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .case-card {
+    background-color: var(--primary-bg);
+    border-radius: 8px;
+    width: 300px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.3s ease;
+  }
+  .case-card:hover {
+    transform: translateY(-5px);
+  }
+  .case-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .case-text {
+    padding: 1rem;
+  }
+  .case-text h3 {
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .case-text blockquote {
+    font-style: italic;
+    margin: 0.5rem 0;
+    border-left: 3px solid var(--accent);
+    padding-left: 0.5rem;
+  }
+  
+  /* 
+    ==========================
+     SURVEY SECTION
+    ==========================
+  */
+  .survey-section {
+    background-color: var(--primary-bg);
+    text-align: center;
+  }
+  .survey-section h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .survey-section p {
+    max-width: 600px;
+    margin: 0 auto 2rem auto;
+  }
+  form {
+    display: inline-flex;
+    flex-direction: column;
+    max-width: 400px;
+    width: 100%;
+    text-align: left;
+  }
+  form label {
+    margin-top: 1rem;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  form input {
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  button[type="submit"] {
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background-color 0.3s ease;
+  }
+  button[type="submit"]:hover {
+    background-color: #48a6d1;
+  }
+  
+  /* 
+    ==========================
+     CONTACT SECTION
+    ==========================
+  */
+  .contact-section {
+    background-color: var(--secondary-bg);
+    text-align: center;
+  }
+  .contact-section h2 {
+    font-size: 2rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .contact-section p {
+    margin-bottom: 1.5rem;
+  }
+  .contact-section ul {
+    list-style: none;
+  }
+  .contact-section li {
+    margin: 1rem 0;
+  }
+  
+  /* 
+    ==========================
+     FOOTER
+    ==========================
+  */
+  .footer {
+    background-color: var(--primary-bg);
+    text-align: center;
+    padding: 20px 5%;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: background-color 0.4s ease;
+  }
+  
+  /* 
+    ==========================
+     RESPONSIVE
+    ==========================
+  */
+  @media (max-width: 768px) {
+    /* Navbar becomes vertical */
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .navbar-links {
+      flex-direction: column;
+      margin-top: 0.5rem;
+    }
+  
+    /* Hero text resizing */
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+  
+    /* Visionaries grid on tablets */
+    .visionaries-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    /* Case studies layout on tablets */
+    .case-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Visionaries grid on mobile */
+    .visionaries-grid {
+      grid-template-columns: 1fr;
+    }
+    /* Survey form full width on mobile */
+    .survey-section form {
+      max-width: 100%;
+    }
+  }
+  
